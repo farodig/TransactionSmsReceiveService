@@ -44,6 +44,7 @@ public class SmsItem
             if (founded.find() && founded.groupCount() > 1)
             {
                 String group = founded.group();
+                
                 // transaction sum
                 TransactionValue = Double.parseDouble(founded.group(1));
 

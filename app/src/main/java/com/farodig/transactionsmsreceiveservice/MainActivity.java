@@ -83,28 +83,29 @@ public class MainActivity extends AppCompatActivity {
     {
         SmsItem msg = new SmsItem("ECMC8062 16:54 списание 500р Баланс: 12341234.23", Calendar.getInstance().getTime());
         CSV csv = new CSV();
-        String data = csv.GetString(msg);
+        csv.SaveCSV(msg);
+        //String data = csv.GetString(msg);
 
 
-        File externalDir = new File(Environment.getExternalStorageDirectory(), "/Мой бюджет/Test.csv");
+//        File externalDir = new File(Environment.getExternalStorageDirectory(), "/Мой бюджет/Test.csv");
         //externalDir.
-        Log.d("SmsReceiverBroadcast", externalDir.getAbsolutePath());
+        //Log.d("SmsReceiverBroadcast", externalDir.getAbsolutePath());
         //openFileInput(externalDir.getAbsolutePath())
 
 
         //(externalDir, Context.MODE_PRIVATE);
         //String filename = "Test.csv";
-        FileOutputStream outputStream;
-       // FileInputStream fis;
-        try {
-            //fis = new FileInputStream(externalDir);
-            outputStream = new FileOutputStream (externalDir);
-            //outputStream = openFileOutput(externalDir, true);
-            outputStream.write(data.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        FileOutputStream outputStream;
+//       // FileInputStream fis;
+//        try {
+//            //fis = new FileInputStream(externalDir);
+//            outputStream = new FileOutputStream (externalDir);
+//            //outputStream = openFileOutput(externalDir, true);
+//            outputStream.write(data.getBytes());
+//            outputStream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 //        try {
 //            //this.openfi
 //            //new File(Environment.getExternalStorageDirectory(), "/Мой бюджет/Test.csv");

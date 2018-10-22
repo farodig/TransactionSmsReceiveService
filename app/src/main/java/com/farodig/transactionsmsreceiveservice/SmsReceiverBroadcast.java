@@ -65,8 +65,8 @@ public class SmsReceiverBroadcast extends BroadcastReceiver {
                     if (IsValid(message)) {
                         SmsItem msg = new SmsItem(message, time);
                         CSV csv = new CSV();
-                        String tmp = csv.GetString(msg);
-                        Log.d("SmsReceiverBroadcast", tmp);
+                        csv.SaveCSV(msg);
+                        Log.d("SmsReceiverBroadcast", "Message is saved.");
                         //Parse(message, time);
                     } else {
                         Log.d("SmsReceiverBroadcast", "Message is not valid.");

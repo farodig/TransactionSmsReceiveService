@@ -2,9 +2,12 @@ package com.farodig.transactionsmsreceiveservice.View;
 
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
+import android.os.Environment;
 
 import com.farodig.transactionsmsreceiveservice.Model.SmsItem;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +32,7 @@ public class CSV
     {
         // init
         out = new StringBuffer(Header);
-        //out.append('\n');
-        //out.append("(");
         out.append(Character.toChars(10));
-        //out.append(")");
-
-        //out.append(Character.toChars(10));
-
     }
 
     private void AddField(String text)
@@ -49,17 +46,13 @@ public class CSV
             out.append(fields.get(i));
             if (i != fields.size() - 1)
                 out.append(CSV_SEPARATOR);
-            //else
+            else
+                out.append(Character.toChars(10));
                 //out.append('\n');
         }
-//        for (int i = 1; i < fields.size(); i++) {
-//            out.append(fields.get(i));
-//            out.append(CSV_SEPARATOR);
-//        }
-//        out.append("\n");
     }
 
-    public String GetString(SmsItem item)
+    public void SaveCSV(SmsItem item)
     {
         // Дата
         AddField(df.format(item.DateTime));
@@ -83,10 +76,19 @@ public class CSV
         gf.applyPattern("#.00");
 
         // Сумма
-        AddField(gf.format(item.TransactionValue));
+        AddField((item.TransactionType.IsNegative() ? "-" : "") + gf.format(item.TransactionValue));
 
         Finish();
 
-        return out.toString();
+        File externalDir = new File(Environment.getExternalStorageDirectory(), "/Мой бюджет/" + new SimpleDateFormat("dd.MM.yyyy_HH.mm.ss").format(item.DateTime) + ".csv");
+
+        FileOutputStream outputStream;
+        try {
+            outputStream = new FileOutputStream (externalDir);
+            outputStream.write(out.toString().getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

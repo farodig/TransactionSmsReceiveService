@@ -31,7 +31,7 @@ public class SmsReceiveService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(LOG_TAG, "onStartCommand");
 
-        someTask();
+        SubscribeBroadcast();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -49,10 +49,8 @@ public class SmsReceiveService extends Service
         return null;
     }
 
-    void someTask()
+    void SubscribeBroadcast()
     {
-
-
         receiver = new SmsReceiverBroadcast();
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.provider.Telephony.SMS_RECEIVED");
