@@ -56,7 +56,8 @@ public class SmsReceiverBroadcast extends BroadcastReceiver {
                     msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
                 }
 
-                //if (msgs[i].getOriginatingAddress() == "900") {
+                // sberbank phone
+                if (msgs[i].getOriginatingAddress() == "900") {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(msgs[i].getTimestampMillis());
 
@@ -71,14 +72,7 @@ public class SmsReceiverBroadcast extends BroadcastReceiver {
                     } else {
                         Log.d("SmsReceiverBroadcast", "Message is not valid.");
                     }
-                    //calendar.getTime();
-                    //int date = calendar.get(calendar.DATE);
-                    //int hour = calendar.get(calendar.HOUR_OF_DAY);
-
-
-                //}
-
-                //Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
