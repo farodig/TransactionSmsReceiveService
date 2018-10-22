@@ -18,6 +18,13 @@
         android:onClick="onClickStop"
         android:text="@string/stop">
     </Button>
+    <Button
+        android:id="@+id/btnTestSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onTestSms"
+        android:text="@string/TestSms">
+    </Button>
     <!--<ProgressBar-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->

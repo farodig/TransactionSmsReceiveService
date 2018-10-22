@@ -2,4 +2,5 @@
     <string name="app_name">TransactionSmsReceiveService</string>
     <string name="start">Start service</string>
     <string name="stop">Stop service</string>
+    <string name="TestSms">Test sms</string>
 </resources>

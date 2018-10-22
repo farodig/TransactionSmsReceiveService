@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 import com.farodig.transactionsmsreceiveservice.Model.SmsItem;
+import com.farodig.transactionsmsreceiveservice.View.CSV;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -55,35 +56,39 @@ public class SmsReceiverBroadcast extends BroadcastReceiver {
                     msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
                 }
 
-                if (msgs[i].getOriginatingAddress() == "900") {
+                //if (msgs[i].getOriginatingAddress() == "900") {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(msgs[i].getTimestampMillis());
 
                     String message = msgs[i].getMessageBody();
                     Date time = calendar.getTime();
                     if (IsValid(message)) {
-                        Parse(message, time);
+                        SmsItem msg = new SmsItem(message, time);
+                        CSV csv = new CSV();
+                        String tmp = csv.GetString(msg);
+                        Log.d("SmsReceiverBroadcast", tmp);
+                        //Parse(message, time);
+                    } else {
+                        Log.d("SmsReceiverBroadcast", "Message is not valid.");
                     }
                     //calendar.getTime();
                     //int date = calendar.get(calendar.DATE);
                     //int hour = calendar.get(calendar.HOUR_OF_DAY);
 
 
-                }
-                // Build the message to show.
-//                strMessage += "SMS from " + msgs[i].getOriginatingAddress();
-//                strMessage += " :" + msgs[i].getMessageBody() + "\n";
-//                msgs[i].getUserData();
-//
-//                // Log and display the SMS message.
-//                Log.d(TAG, "onReceive: " + strMessage);
+                //}
+
                 //Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    /*
+    Check if sms is transaction
+     */
     private boolean IsValid(String message)
     {
+        if (message.contains("кредит")) return false;
         if (message.contains("отказ покупка")) return false;
         if (message.contains("карта")) return false;
         if (message.contains("карту")) return false;
