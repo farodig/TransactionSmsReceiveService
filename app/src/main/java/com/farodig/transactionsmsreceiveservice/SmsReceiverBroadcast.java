@@ -57,7 +57,7 @@ public class SmsReceiverBroadcast extends BroadcastReceiver {
                 }
 
                 // sberbank phone
-                if (msgs[i].getOriginatingAddress() == "900") {
+                if (msgs[i].getOriginatingAddress().equals("900")) {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(msgs[i].getTimestampMillis());
 
