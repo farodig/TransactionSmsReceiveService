@@ -96,4 +96,28 @@ public class SmsItem
         { put("отмена покупки (\\d+(.{1}\\d{2})?)usd", TransactionTypeEnum.EnrollmentUSD); }
         { put("возврат покупки (\\d+(.{1}\\d{2})?)р", TransactionTypeEnum.Enrollment); }
     };
+
+    // Check if sms is transaction
+    public static boolean IsValid(String message)
+    {
+        if (message.contains("кредит")) return false;
+        if (message.contains("отказ покупка")) return false;
+        if (message.contains("карта")) return false;
+        if (message.contains("карту")) return false;
+        if (message.contains("картой")) return false;
+        if (message.contains("карте")) return false;
+        if (message.contains("перевод")) return false;
+        if (message.contains("откройте")) return false;
+        if (message.contains("оформите")) return false;
+        if (message.contains("отправьте")) return false;
+        if (message.contains("обратитесь")) return false;
+        if (message.contains("не сообщайте")) return false;
+        if (message.contains("встречайте")) return false;
+        if (message.contains("можете")) return false;
+        if (message.contains("с днем рождения")) return false;
+        if (message.contains("запрос на регистрацию")) return false;
+        if (message.contains("вход")) return false;
+
+        return true;
+    }
 }

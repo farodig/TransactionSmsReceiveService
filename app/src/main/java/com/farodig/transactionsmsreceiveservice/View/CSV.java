@@ -48,10 +48,10 @@ public class CSV
                 out.append(CSV_SEPARATOR);
             else
                 out.append(Character.toChars(10));
-                //out.append('\n');
         }
     }
 
+    // save transaction as csv file
     public void SaveCSV(SmsItem item)
     {
         // Дата
